@@ -1,6 +1,6 @@
 import User from '../models/User.js'
 
-//READ test
+//READ testss
 
 export const getUser = async (req, res) => {
 	try {
