@@ -1,2 +1,3 @@
-# mern-project
+# MERN-project
+
 My first project
