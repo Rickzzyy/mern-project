@@ -30,7 +30,7 @@ export const register = async (req, res) => {
 	}
 }
 
-//LOGIN IN
+//LOGIN IN test
 export const login = async (req, res) => {
 	try {
 		const { email, password } = req.body
