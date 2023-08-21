@@ -39,12 +39,12 @@ const PostWidget = ({
 			body: JSON.stringify({ userId: loggedInUserId }),
 		})
 		const updatedPost = await response.json()
-		dispatch(setPost({ posts: updatedPost }))
+		dispatch(setPost({ post: updatedPost }))
 	}
 
 	return (
-		<WidgetWrapper m='2rem 0 '>
-			<Friend friend={postUserId} name={name} subtitle={location} userPicturePath={userPicturePath} />
+		<WidgetWrapper m='2rem 0'>
+			<Friend friendId={postUserId} name={name} subtitle={location} userPicturePath={userPicturePath} />
 			<Typography color={main} sx={{ mt: '1rem' }}>
 				{description}
 			</Typography>
@@ -73,6 +73,7 @@ const PostWidget = ({
 						<Typography>{comments.length}</Typography>
 					</FlexBetween>
 				</FlexBetween>
+
 				<IconButton>
 					<ShareOutlined />
 				</IconButton>
