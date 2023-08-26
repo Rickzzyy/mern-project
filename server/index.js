@@ -36,12 +36,12 @@ app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 //FILE STORAGE
 
 const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'public/assets')
-	},
-	filename: function (req, file, cb) {
-		cb(null, file.originalname)
-	},
+  destination: function (req, file, cb) {
+    cb(null, 'public/assets')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  },
 })
 const upload = multer({ storage })
 
@@ -50,23 +50,26 @@ app.post('/auth/register', upload.single('picture'), register)
 app.post('/posts', verifyToken, upload.single('picture'), createPost)
 
 //routes
-app.use('/auth', authRoutes)
-app.use('/users', userRoutes)
-app.use('/posts', postRoutes)
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
+
+//Error handling
+app.use(errorHandler);
 
 //MONGOOSE SETUP
 const PORT = process.env.PORT || 6001
 mongoose
-	.connect(process.env.MONGO_URL, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
-	.then(() => {
-		app.listen(PORT, () => console.log(`SERVER PORT: ${PORT}`))
-		//ADD DATA ONE TIME
-		// User.insertMany(users)
-		// Post.insertMany(posts)
-	})
-	.catch((err) => console.log(`${err} did not connect`))
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`SERVER PORT: ${PORT}`))
+    //ADD DATA ONE TIME
+    // User.insertMany(users)
+    // Post.insertMany(posts)
+  })
+  .catch((err) => console.log(`${err} did not connect`))
 
 // start server : npx nodemon
